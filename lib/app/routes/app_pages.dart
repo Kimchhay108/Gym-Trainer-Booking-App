@@ -1,20 +1,34 @@
 import 'package:get/get.dart';
-
-import '../modules/home/bindings/home_binding.dart';
-import '../modules/home/views/home_view.dart';
+import 'package:gym_trainer/app/modules/home/views/home_view.dart';
+import 'package:gym_trainer/presentation/statistic/statistic.screen.dart';
+import 'package:gym_trainer/presentation/wallet/wallet.screen.dart';
+import 'package:gym_trainer/presentation/profile/profile.screen.dart';
+import '../modules/home/controllers/home_controller.dart';
 
 part 'app_routes.dart';
 
 class AppPages {
-  AppPages._();
-
   static const INITIAL = Routes.HOME;
 
   static final routes = [
     GetPage(
-      name: _Paths.HOME,
+      name: Routes.HOME,
       page: () => const HomeView(),
-      binding: HomeBinding(),
+      binding: BindingsBuilder(() {
+        Get.put(HomeController());
+      }),
+    ),
+    GetPage(
+      name: Routes.STATISTIC,
+      page: () => StatisticScreen(),
+    ),
+    GetPage(
+      name: Routes.WALLET,
+      page: () => WalletScreen(),
+    ),
+    GetPage(
+      name: Routes.PROFILE,
+      page: () => ProfileScreen(),
     ),
   ];
 }
